@@ -1,0 +1,7 @@
+{
+  "name": "One City Grocery Super App",
+  "description": "A comprehensive, multi-franchise grocery super app designed for a single city with an offline-first approach. It features a wallet-based, cash-centric ecosystem with roles for customers, delivery partners, workers, managers, and owners.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
