@@ -16,3 +16,4 @@ export const MLM_LEVELS = {
 };
 
 export const DELIVERY_PAYOUT_PER_ORDER = 10; // in INR
+export const ORDER_DENIAL_PENALTY = 500; // Loyalty points to deduct on denial

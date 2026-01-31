@@ -72,9 +72,6 @@ const PrintableBill: React.FC<PrintableBillProps> = ({ order }) => {
       </div>
       <p className="text-center mt-2">Thank you for shopping with us!</p>
       
-      {/* FIX: Replaced non-standard <style jsx> with a standard <style> tag to resolve the compile error.
-          Also fixed the print logic by applying the 'print-container' class to this component's root div,
-          ensuring the entire bill is visible for printing, and removed a redundant empty div. */}
       <style>{`
         @media print {
           body * {

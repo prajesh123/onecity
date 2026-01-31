@@ -45,7 +45,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, cartItems, updateCartQuant
             status: 'Pending' as any,
             createdAt: new Date().toISOString(),
             pin: String(Math.floor(1000 + Math.random() * 9000)),
-            isFlaggedOrder: user.isFlagged
+            isFlaggedOrder: user.isFlagged // Set flag on order if user is flagged
         };
         setPlacedOrder(newOrder);
         setOrderPlaced(true);
@@ -53,7 +53,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, cartItems, updateCartQuant
     };
     
     const handleCloseAndReset = () => {
-        clearCart();
+        if (orderPlaced) {
+            clearCart();
+        }
         setOrderPlaced(false);
         setPlacedOrder(null);
         onClose();

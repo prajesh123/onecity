@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
 import Header from '../common/Header';
-import { mockOrders } from '../../services/mockData';
+import { mockOrders, mockUsers } from '../../services/mockData';
 import { useAuth } from '../../contexts/AppContext';
 import { Order, OrderStatus } from '../../types';
 import { MapPin, Phone, Package, Check, AlertTriangle, MessageSquare } from 'lucide-react';
 
 const DeliveryDashboard: React.FC = () => {
   const { user } = useAuth();
-  const [orders, setOrders] = useState<Order[]>(mockOrders.filter(o => o.deliveryPartnerId === user.id));
+  // Manage a local copy of orders to reflect status changes
+  const [orders, setOrders] = useState<Order[]>(
+    mockOrders.filter(o => o.status === OrderStatus.OutForDelivery || o.status === OrderStatus.Delivered)
+  );
   const [pinInputs, setPinInputs] = useState<{ [key: string]: string }>({});
 
   const handlePinChange = (orderId: string, value: string) => {
@@ -19,7 +22,22 @@ const DeliveryDashboard: React.FC = () => {
   
   const confirmDelivery = (order: Order) => {
     if (pinInputs[order.id] === order.pin) {
-        alert('Delivery confirmed successfully!');
+        // Find and update the order in the mock data source
+        const orderInMock = mockOrders.find(o => o.id === order.id);
+        if (orderInMock) {
+            orderInMock.status = OrderStatus.Delivered;
+        }
+
+        // Find the customer and check if they are flagged
+        const customer = mockUsers.find(u => u.id === order.customerId);
+        if (customer && customer.isFlagged) {
+            customer.isFlagged = false; // Clear the flag
+            alert(`Delivery confirmed! Customer ${customer.name}'s flag has been cleared.`);
+        } else {
+            alert('Delivery confirmed successfully!');
+        }
+        
+        // Force a re-render by updating the local state
         setOrders(prev => prev.map(o => o.id === order.id ? {...o, status: OrderStatus.Delivered} : o));
     } else {
         alert('Incorrect PIN!');
