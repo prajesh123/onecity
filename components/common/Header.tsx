@@ -14,7 +14,7 @@ const Header: React.FC = () => {
       backgroundColor: '#fff',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
     }}>
-      <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#1a237e' }}>One City Grocery - Admin Panel</h1>
+      <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#1a237e' }}>One City Grocery</h1>
       {user && (
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{ marginRight: '1rem' }}>Welcome, {user.name} ({user.role})</span>

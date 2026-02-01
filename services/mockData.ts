@@ -3,11 +3,11 @@ import { User, Product, Order, SalesData } from '../types';
 import { ROLES } from '../constants';
 
 export const mockUsers: User[] = [
-  { id: '1', name: 'Manager Mike', role: ROLES.MANAGER },
-  { id: '2', name: 'Owner Olivia', role: ROLES.OWNER },
   { id: '3', name: 'Customer Chris', role: ROLES.CUSTOMER },
   { id: '4', name: 'Worker Wendy', role: ROLES.WORKER },
   { id: '5', name: 'Delivery Dave', role: ROLES.DELIVERY },
+  { id: '1', name: 'Manager Mike', role: ROLES.MANAGER },
+  { id: '2', name: 'Owner Olivia', role: ROLES.OWNER },
 ];
 
 export const mockProducts: Product[] = [
@@ -18,8 +18,11 @@ export const mockProducts: Product[] = [
 ];
 
 export const mockOrders: Order[] = [
-    { id: 'o1', customerName: 'John Doe', items: [{...mockProducts[0], quantity: 2}, {...mockProducts[2], quantity: 1}], total: 9.00, status: 'Packed', timestamp: '2024-05-21 10:30 AM' },
-    { id: 'o2', customerName: 'Jane Smith', items: [{...mockProducts[1], quantity: 1}], total: 1.50, status: 'Pending', timestamp: '2024-05-21 11:00 AM' },
+    { id: 'o1', customerName: 'John Doe', items: [{...mockProducts[0], quantity: 2}, {...mockProducts[2], quantity: 1}], total: 9.00, status: 'Packed', timestamp: '2024-05-21 10:30 AM', deliveryAddress: '123 Main St' },
+    { id: 'o2', customerName: 'Jane Smith', items: [{...mockProducts[1], quantity: 1}], total: 1.50, status: 'Pending', timestamp: '2024-05-21 11:00 AM', deliveryAddress: '456 Oak Ave' },
+    { id: 'o3', customerName: 'Alice Johnson', items: [{...mockProducts[3], quantity: 2}], total: 6.00, status: 'Out for Delivery', timestamp: '2024-05-21 09:00 AM', deliveryAddress: '789 Pine Ln' },
+    { id: 'o4', customerName: 'Customer Chris', items: [{...mockProducts[0], quantity: 4}], total: 10.00, status: 'Delivered', timestamp: '2024-05-20 02:00 PM', deliveryAddress: '101 Maple Dr' },
+    { id: 'o5', customerName: 'Bob Brown', items: [{...mockProducts[1], quantity: 1}, {...mockProducts[2], quantity: 1}, {...mockProducts[3], quantity: 1}], total: 8.50, status: 'Pending', timestamp: '2024-05-21 11:15 AM', deliveryAddress: '212 Birch Rd' },
 ];
 
 export const mockSalesData: SalesData[] = [

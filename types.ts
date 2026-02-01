@@ -28,6 +28,7 @@ export interface Order {
     total: number;
     status: 'Pending' | 'Packed' | 'Out for Delivery' | 'Delivered';
     timestamp: string;
+    deliveryAddress: string;
 }
 
 export interface SalesData {
